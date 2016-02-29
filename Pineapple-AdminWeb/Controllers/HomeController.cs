@@ -1,5 +1,7 @@
 ﻿using Microsoft.WindowsAzure.MobileServices;
+using Pineapple_AdminWeb.Helpers;
 using Pineapple_AdminWeb.Models;
+using Pineapple_AdminWeb.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,7 +32,19 @@ namespace Pineapple_AdminWeb.Controllers
 
         public ActionResult AddReport()
         {
-            return View();
+            return View(new AddReportViewModel());
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> AddReport(AddReportViewModel viewModel)
+        {
+            // se cargan las imágenes
+            AzureBlob blob = new AzureBlob();
+
+            // guardamos y establecemos las url
+            viewModel.Noticia.PictureURL = await blob.GuardarImagen(viewModel.UrlImagen);
+
+            return View("Reporte",noticias);
         }
 
         public ActionResult DetailsReport(string id)
