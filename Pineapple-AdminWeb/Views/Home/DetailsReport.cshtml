@@ -1,0 +1,146 @@
+﻿@model Pineapple_AdminWeb.Models.Noticia
+
+@{
+    ViewBag.Title = "DetailsReport";
+}
+
+<h2>DetailsReport</h2>
+
+<div>
+    <h4>Noticia</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PictureURL)
+        </dt>
+
+        <dd>
+            <img src="@Model.PictureURL" style="max-width:250px;max-height:250px;" />
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateShort)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateShort)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IdCategory)
+        </dt>
+
+        <dd>
+            @{
+                switch (Model.IdCategory)
+                {
+                    case "1":
+                        <p>Personas</p>
+                        break;
+
+                    case "2":
+                        <p>Vehículos</p>
+                        break;
+
+                    case "3":
+                        <p>Mascotas</p>
+                        break;
+
+                    case "4":
+                        <p>Otros</p>
+                        break;
+
+                    default:
+                        break;
+                }
+            }
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IdZone)
+        </dt>
+
+        <dd>
+            @{
+                switch (Model.IdZone)
+                {
+                    case "1":
+                        <p>San José</p>
+                        break;
+
+                    case "2":
+                        <p>Alajuela</p>
+                        break;
+
+                    case "3":
+                        <p>Cartago</p>
+                        break;
+
+                    case "4":
+                        <p>Heredia</p>
+                        break;
+
+                    case "5":
+                        <p>Guanacaste</p>
+                        break;
+
+                    case "6":
+                        <p>Puntarenas</p>
+                        break;
+
+                    case "7":
+                        <p>Limón</p>
+                        break;
+
+                    default:
+                        break;
+                }
+            }
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Solved)
+        </dt>
+
+        <dd>
+            @{
+                if (Model.IdStatus.Equals("0"))
+                {
+                    <p>Pendiente</p>
+                }
+                else
+                {
+                    <p>Resuelto</p>
+                }
+            }
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.QuantityReports)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.QuantityReports)
+        </dd>
+
+    </dl>
+</div>
+<p>
+   
+    @Html.ActionLink("Back to List", "Reporte")
+</p>

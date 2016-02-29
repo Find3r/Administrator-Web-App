@@ -277,6 +277,7 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Home\ListReports.cshtml" />
     <Content Include="Views\Home\AddReport.cshtml" />
+    <Content Include="Views\Home\DetailsReport.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

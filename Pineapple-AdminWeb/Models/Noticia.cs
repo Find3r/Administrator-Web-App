@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Globalization;
 using System.Linq;
 using System.Web;
@@ -12,18 +13,22 @@ namespace Pineapple_AdminWeb.Models
         [JsonProperty(PropertyName = "id")]
         public string Id { get; set; }
 
+        [DisplayName("Nombre")]
         [JsonProperty(PropertyName = "nombre")]
         public string Name { get; set; }
 
+        [DisplayName("Descripción")]
         [JsonProperty(PropertyName = "descripcion")]
         public string Description { get; set; }
 
+        [DisplayName("Imagen")]
         [JsonProperty(PropertyName = "urlimagen")]
         public string PictureURL { get; set; }
 
         [JsonProperty(PropertyName = "__createdAt")]
         public DateTime __createdAt { get; set; }
 
+        [DisplayName("Fecha desaparición")]
         [JsonProperty(PropertyName = "fechadesaparicion")]
         public DateTime DateLost { get; set; }
 
@@ -33,12 +38,15 @@ namespace Pineapple_AdminWeb.Models
         [JsonProperty(PropertyName = "idestado")]
         public string IdStatus { get; set; }
 
+        [DisplayName("Categoría")]
         [JsonProperty(PropertyName = "idcategoria")]
         public string IdCategory { get; set; }
 
+        [DisplayName("Provincia")]
         [JsonProperty(PropertyName = "idprovincia")]
         public string IdZone { get; set; }
 
+        [DisplayName("Reportes")]
         [JsonProperty(PropertyName = "cantidad_reportes")]
         private int ? quantityReports { get; set; }
 
@@ -48,9 +56,11 @@ namespace Pineapple_AdminWeb.Models
         [JsonProperty(PropertyName = "longitud")]
         public string Longitude { get; set; }
 
+        [DisplayName("Estado")]
         [JsonProperty(PropertyName = "solved")]
         public bool? Solved { get; set; }
 
+        [DisplayName("Fecha desaparición")]
         public string DateShort
         {
             get

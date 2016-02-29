@@ -1,48 +1,33 @@
 ﻿@model IEnumerable<Pineapple_AdminWeb.Models.Noticia>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Crear nuevo", "AddReport")
 </p>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Name)
+            Nombre
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Description)
+            Descripcion
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.PictureURL)
+            Imagen
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.__createdAt)
+            Fecha de desaparición
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.DateLost)
+            Categoría
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.IdUser)
+            Provincia
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.IdStatus)
+            Estado
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.IdCategory)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.IdZone)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Latitude)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Longitude)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Solved)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.QuantityReports)
+            Comentarios
         </th>
         <th></th>
     </tr>
@@ -56,42 +41,91 @@
             @Html.DisplayFor(modelItem => item.Description)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.PictureURL)
+            <img src="@item.PictureURL" style="max-width:150px;max-height:150px;"/>
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.__createdAt)
+            @Html.DisplayFor(modelItem => item.DateShort)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.DateLost)
+            @{
+                switch (item.IdCategory)
+                {
+                    case "1":
+                        <p>Personas</p>
+                        break;
+
+                    case "2":
+                        <p>Vehículos</p>
+                        break;
+
+                    case "3":
+                        <p>Mascotas</p>
+                        break;
+
+                    case "4":
+                        <p>Otros</p>
+                        break;
+
+                    default:
+                        break;
+                }
+            }
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.IdUser)
+            @{
+                switch (item.IdZone)
+                {
+                    case "1":
+                        <p>San José</p>
+                        break;
+
+                    case "2":
+                        <p>Alajuela</p>
+                        break;
+
+                    case "3":
+                        <p>Cartago</p>
+                        break;
+
+                    case "4":
+                        <p>Heredia</p>
+                        break;
+
+                    case "5":
+                        <p>Guanacaste</p>
+                        break;
+
+                    case "6":
+                        <p>Puntarenas</p>
+                        break;
+
+                    case "7":
+                        <p>Limón</p>
+                        break;
+
+                    default:
+                        break;
+                }
+            }
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.IdStatus)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.IdCategory)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.IdZone)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Latitude)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Longitude)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Solved)
+            @{
+                if (item.IdStatus.Equals("0"))
+                {
+                    <p>Pendiente</p>
+                }
+                else
+                {
+                    <p>Resuelto</p>
+                }
+            }
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.QuantityReports)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+            @Html.ActionLink("Details", "DetailsReport", new { id = item.Id })
         </td>
     </tr>
 }
