@@ -4,8 +4,16 @@
     ViewBag.Title = "AddReport";
 }
 
-<h2>AddReport</h2>
+<h2>Agregar reporte</h2>
 
+@{
+    if (!String.IsNullOrEmpty(ViewBag.Status))
+    {
+        <label class="text-success">@ViewBag.Status</label>
+       
+        Model.Noticia.Solved = false;
+    }
+}
 
 @using (Html.BeginForm("AddReport","Home",FormMethod.Post, new { @class = "well", enctype = "multipart/form-data" }))
 {
@@ -83,7 +91,7 @@
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Regresar", "Reporte")
 </div>
 
 @section Scripts {

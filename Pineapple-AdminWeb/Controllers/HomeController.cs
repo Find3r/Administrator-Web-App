@@ -38,13 +38,24 @@ namespace Pineapple_AdminWeb.Controllers
         [HttpPost]
         public async Task<ActionResult> AddReport(AddReportViewModel viewModel)
         {
-            // se cargan las imágenes
-            AzureBlob blob = new AzureBlob();
+            try
+            {
+                // se cargan las imágenes
+                AzureBlob blob = new AzureBlob();
 
-            // guardamos y establecemos las url
-            viewModel.Noticia.PictureURL = await blob.GuardarImagen(viewModel.UrlImagen);
+                ViewBag.Status = "Agregado con éxito";
 
-            return View("Reporte",noticias);
+                // guardamos y establecemos las url
+                viewModel.Noticia.PictureURL = await blob.GuardarImagen(viewModel.UrlImagen);
+                ModelState.Clear();
+                return View(new AddReportViewModel());
+            }
+            catch (Exception)
+            {
+
+                //throw;
+            }
+            return View(new AddReportViewModel());
         }
 
         public ActionResult DetailsReport(string id)

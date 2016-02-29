@@ -11,6 +11,8 @@ namespace Pineapple_AdminWeb.ViewModel
     {
         public Noticia Noticia { get; set; }
 
+        public string ActionStatus { get; set; }
+
         public SelectList ListaProvincias { get; set; }
 
         public SelectList ListaCategorias { get; set; }
@@ -46,6 +48,7 @@ namespace Pineapple_AdminWeb.ViewModel
 
         public AddReportViewModel()
         {
+            Noticia = new Noticia();
             ListaProvincias = new SelectList(provincias, "Id", "Nombre");
             ListaCategorias = new SelectList(categorias, "Id", "Nombre");
             ListaEstados = new SelectList(estados, "Id", "Nombre");
