@@ -47,7 +47,11 @@ namespace Pineapple_AdminWeb.Controllers
 
                 // guardamos y establecemos las url
                 viewModel.Noticia.PictureURL = await blob.GuardarImagen(viewModel.UrlImagen);
+
+                await tableNoticia.InsertAsync(viewModel.Noticia);
+
                 ModelState.Clear();
+
                 return View(new AddReportViewModel());
             }
             catch (Exception)

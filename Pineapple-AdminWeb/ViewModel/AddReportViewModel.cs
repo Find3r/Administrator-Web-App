@@ -48,7 +48,11 @@ namespace Pineapple_AdminWeb.ViewModel
 
         public AddReportViewModel()
         {
-            Noticia = new Noticia();
+            Noticia = new Noticia()
+            {
+                IdUser = "1",
+                IdStatus = "0"
+            };
             ListaProvincias = new SelectList(provincias, "Id", "Nombre");
             ListaCategorias = new SelectList(categorias, "Id", "Nombre");
             ListaEstados = new SelectList(estados, "Id", "Nombre");
