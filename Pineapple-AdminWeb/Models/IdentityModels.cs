@@ -29,5 +29,7 @@ namespace Pineapple_AdminWeb.Models
         {
             return new ApplicationDbContext();
         }
+
+        public System.Data.Entity.DbSet<Pineapple_AdminWeb.Models.Noticia> Noticias { get; set; }
     }
 }
