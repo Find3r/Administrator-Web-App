@@ -3,97 +3,106 @@
 @{
     ViewBag.Title = "AddReport";
 }
+<div class="space">
+    <h2>Agregar reporte</h2>
 
-<h2>Agregar reporte</h2>
+    @{
+        if (!String.IsNullOrEmpty(ViewBag.Status))
+        {
+            <label class="text-success">@ViewBag.Status</label>
 
-@{
-    if (!String.IsNullOrEmpty(ViewBag.Status))
-    {
-        <label class="text-success">@ViewBag.Status</label>
-       
-        Model.Noticia.Solved = false;
+            Model.Noticia.Solved = false;
+        }
     }
-}
 
-@using (Html.BeginForm("AddReport","Home",FormMethod.Post, new { @class = "well", enctype = "multipart/form-data" }))
-{
-    @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <h4>Noticia</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @using (Html.BeginForm("AddReport", "Home", FormMethod.Post, new { @class = "well", enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Noticia.Name, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Noticia.Name, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Noticia.Name, "", new { @class = "text-danger" })
+        <div class="form-horizontal">
+            <h4>Noticia</h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Noticia.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Noticia.Name, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Noticia.Name, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Noticia.Description, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextAreaFor(model => model.Noticia.Description, 6, 42, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Noticia.Description, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Noticia.PictureURL, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.UrlImagen, null, new { type = "file", @required = "required" })
+                    @Html.ValidationMessageFor(model => model.UrlImagen, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Noticia.DateLost, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Noticia.DateLost, new { htmlAttributes = new { @class = "form-control", id = "datepicker", @required = "required" } })
+                    @Html.ValidationMessageFor(model => model.Noticia.DateLost, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Noticia.IdCategory, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownListFor(model => model.Noticia.IdCategory, Model.ListaCategorias, new { @class = "form-control", @required = "required" })
+                    @Html.ValidationMessageFor(model => model.Noticia.IdCategory, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Noticia.IdZone, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownListFor(model => model.Noticia.IdZone, Model.ListaProvincias, new { @class = "form-control", @required = "required" })
+                    @Html.ValidationMessageFor(model => model.Noticia.IdZone, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Noticia.Solved, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownListFor(model => model.Noticia.Solved, Model.ListaEstados, new { @class = "form-control", @required = "required", disabled = "disabled" })
+                    @Html.ValidationMessageFor(model => model.Noticia.Solved, "", new { @class = "text-danger" })
+
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Agregar" class="btn btn-default" />
+                </div>
             </div>
         </div>
+    }
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Noticia.Description, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.TextAreaFor(model => model.Noticia.Description, 6, 42, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Noticia.Description, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Noticia.PictureURL, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.TextBoxFor(model => model.UrlImagen, null, new { type = "file", @required = "required" })
-                @Html.ValidationMessageFor(model => model.UrlImagen, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Noticia.DateLost, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Noticia.DateLost, new { htmlAttributes = new { @class = "form-control", id = "datepicker", @required = "required"} })
-                 @Html.ValidationMessageFor(model => model.Noticia.DateLost, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Noticia.IdCategory, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownListFor(model => model.Noticia.IdCategory, Model.ListaCategorias, new { @class = "form-control", @required = "required" })
-                @Html.ValidationMessageFor(model => model.Noticia.IdCategory, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Noticia.IdZone, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownListFor(model => model.Noticia.IdZone, Model.ListaProvincias, new { @class = "form-control", @required = "required" })
-                @Html.ValidationMessageFor(model => model.Noticia.IdZone, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Noticia.Solved, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownListFor(model => model.Noticia.Solved, Model.ListaEstados, new { @class = "form-control", @required = "required", disabled="disabled" })
-                @Html.ValidationMessageFor(model => model.Noticia.Solved, "", new { @class = "text-danger" })
-                
-            </div>
-        </div>
-
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Agregar" class="btn btn-default" />
-            </div>
-        </div>
+    <div>
+        @Html.ActionLink("Regresar", "Reporte")
     </div>
-}
 
-<div>
-    @Html.ActionLink("Regresar", "Reporte")
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }
 </div>
 
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}
+<script>
+    $(function () {
+
+        $("#nav").removeClass("navbar-transparent");
+        $("#nav").addClass("navbar-inverse navbar-fixed-top");
+    });
+</script>

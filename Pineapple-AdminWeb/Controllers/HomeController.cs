@@ -129,7 +129,7 @@ namespace Pineapple_AdminWeb.Controllers
         private async Task CargarNoticias()
         {
             // se obtienen las noticias
-            noticias = await tableNoticia.OrderByDescending(e => e.DateLost).ToEnumerableAsync();
+            noticias = await MobileService.InvokeApiAsync<IEnumerable<Noticia>>("last_newsaux", System.Net.Http.HttpMethod.Get, new Dictionary<string, string> { { "id", "1" } });
         }
 
     }

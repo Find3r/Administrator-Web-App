@@ -68,6 +68,10 @@ namespace Pineapple_AdminWeb.Models
         [JsonProperty(PropertyName = "solved")]
         public bool Solved { get; set; }
 
+
+        [JsonProperty(PropertyName = "cantidad_comentarios")]
+        public int CantidadComentarios;
+
         public Noticia()
         {
             DateLost = DateTime.Now;
