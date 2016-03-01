@@ -4,8 +4,26 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - Find3r</title>
+    
     @Styles.Render("~/Content/css")
+    <link href="~/Content/themes/smoothness/jquery-ui.css" rel="stylesheet" />
     @Scripts.Render("~/bundles/modernizr")
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+    <script src="~/Scripts/jquery.ui.core.js"></script>
+    <script src="~/Scripts/jquery.ui.datepicker.min.js"></script>
+
+    <script>
+
+      $(function() {
+
+        $( "#datepicker" ).datepicker();
+
+      });
+
+    </script>
 
 </head>
 <body>
@@ -35,8 +53,6 @@
         </footer>
     </div>
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
+
 </body>
 </html>

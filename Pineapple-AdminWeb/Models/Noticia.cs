@@ -32,7 +32,7 @@ namespace Pineapple_AdminWeb.Models
         [JsonProperty(PropertyName = "__createdAt")]
         public DateTime __createdAt { get; set; }
 
-        [Required]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         [DisplayName("Fecha desaparición")]
         [JsonProperty(PropertyName = "fechadesaparicion")]
         public DateTime DateLost { get; set; }
@@ -70,6 +70,7 @@ namespace Pineapple_AdminWeb.Models
 
         public Noticia()
         {
+            DateLost = DateTime.Now;
             Solved = false;
         }
 

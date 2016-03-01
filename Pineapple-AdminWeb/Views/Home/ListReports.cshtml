@@ -44,7 +44,7 @@
             <img src="@item.PictureURL" style="max-width:150px;max-height:150px;"/>
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.DateShort)
+            @Html.DisplayFor(modelItem => item.DateLost)
         </td>
         <td>
             @{
@@ -124,8 +124,8 @@
             @Html.DisplayFor(modelItem => item.QuantityReports)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "DetailsReport", new { id = item.Id })
+            @Html.ActionLink("Editar", "EditReport", new { id=item.Id }) |
+            @Html.ActionLink("Detalle", "DetailsReport", new { id = item.Id })
         </td>
     </tr>
 }

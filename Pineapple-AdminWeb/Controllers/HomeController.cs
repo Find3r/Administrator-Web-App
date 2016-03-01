@@ -35,6 +35,45 @@ namespace Pineapple_AdminWeb.Controllers
             return View(new AddReportViewModel());
         }
 
+        public ActionResult EditReport(string id)
+        {
+            // se busca la noticia en la colección
+            Noticia noticia = noticias.Where(e => e.Id.Equals(id)).FirstOrDefault();
+
+            // se pasa la noticia
+            AddReportViewModel viewModel = new AddReportViewModel();
+            viewModel.Noticia = noticia;
+
+            return View(viewModel);
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> EditReport(AddReportViewModel viewModel)
+        {
+            try
+            {
+                // se cargan las imágenes
+                AzureBlob blob = new AzureBlob();
+
+                ViewBag.Status = "Agregado con éxito";
+
+                // guardamos y establecemos las url
+                viewModel.Noticia.PictureURL = await blob.GuardarImagen(viewModel.UrlImagen);
+
+                await tableNoticia.InsertAsync(viewModel.Noticia);
+
+                ModelState.Clear();
+
+                return View(new AddReportViewModel());
+            }
+            catch (Exception)
+            {
+
+                //throw;
+            }
+            return View(new AddReportViewModel());
+        }
+
         [HttpPost]
         public async Task<ActionResult> AddReport(AddReportViewModel viewModel)
         {
