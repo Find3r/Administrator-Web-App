@@ -62,13 +62,9 @@ namespace Pineapple_AdminWeb.Controllers
                     viewModel.Noticia.PictureURL = await blob.GuardarImagen(viewModel.UrlImagen);
                 }
 
-                ViewBag.Status = "Actualizado con éxito";
-
                 await tableNoticia.UpdateAsync(viewModel.Noticia);
 
-                ModelState.Clear();
-
-       
+                ViewBag.Status = "Actualizado con éxito";
 
                 return View(new AddReportViewModel() { Noticia = viewModel.Noticia });
             }
