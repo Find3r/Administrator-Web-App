@@ -52,19 +52,24 @@ namespace Pineapple_AdminWeb.Controllers
         {
             try
             {
-                // se cargan las imágenes
-                AzureBlob blob = new AzureBlob();
+                // se verifica si la url de la imagen del viewmodel es diferente de null, si es así se cambiará la imagen
+                if (viewModel.UrlImagen != null)
+                {
+                    // se cargan las imágenes
+                    AzureBlob blob = new AzureBlob();
+                    // guardamos y establecemos las url
+                    viewModel.Noticia.PictureURL = await blob.GuardarImagen(viewModel.UrlImagen);
+                }
 
-                ViewBag.Status = "Agregado con éxito";
+                ViewBag.Status = "Actualizado con éxito";
 
-                // guardamos y establecemos las url
-                viewModel.Noticia.PictureURL = await blob.GuardarImagen(viewModel.UrlImagen);
-
-                await tableNoticia.InsertAsync(viewModel.Noticia);
+                await tableNoticia.UpdateAsync(viewModel.Noticia);
 
                 ModelState.Clear();
 
-                return View(new AddReportViewModel());
+       
+
+                return View(new AddReportViewModel() { Noticia = viewModel.Noticia });
             }
             catch (Exception)
             {
@@ -91,7 +96,7 @@ namespace Pineapple_AdminWeb.Controllers
 
                 ModelState.Clear();
 
-                return View(new AddReportViewModel());
+                return View(new AddReportViewModel() { Noticia = viewModel.Noticia });
             }
             catch (Exception)
             {
@@ -115,11 +120,16 @@ namespace Pineapple_AdminWeb.Controllers
         {
             ViewBag.Message = "Your application description page.";
 
-            // se obtienen las noticias
-            noticias = await tableNoticia.OrderByDescending(e => e.DateLost).ToEnumerableAsync();
+            await CargarNoticias();
 
             // se pasan las noticias a la vista
             return View(noticias);
+        }
+
+        private async Task CargarNoticias()
+        {
+            // se obtienen las noticias
+            noticias = await tableNoticia.OrderByDescending(e => e.DateLost).ToEnumerableAsync();
         }
 
     }

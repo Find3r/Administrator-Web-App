@@ -42,8 +42,8 @@ namespace Pineapple_AdminWeb.ViewModel
 
         private List<BaseModel> estados = new List<BaseModel>()
         {
-            new BaseModel("0","Pendiente"),
-            new BaseModel("1","Resuelto")
+            new BaseModel("false","Pendiente"),
+            new BaseModel("true","Resuelto")
         };
 
         public AddReportViewModel()

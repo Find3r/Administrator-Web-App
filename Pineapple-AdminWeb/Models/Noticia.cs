@@ -66,7 +66,7 @@ namespace Pineapple_AdminWeb.Models
         [Required]
         [DisplayName("Estado")]
         [JsonProperty(PropertyName = "solved")]
-        public bool? Solved { get; set; }
+        public bool Solved { get; set; }
 
         public Noticia()
         {

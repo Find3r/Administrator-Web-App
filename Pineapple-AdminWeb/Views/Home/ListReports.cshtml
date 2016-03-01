@@ -110,7 +110,7 @@
         </td>
         <td>
             @{
-                if (item.Solved.Equals("0"))
+                if (!item.Solved)
                 {
                     <p>Pendiente</p>
                 }
