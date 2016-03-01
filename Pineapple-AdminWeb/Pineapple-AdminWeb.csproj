@@ -225,8 +225,27 @@
     <Compile Include="ViewModel\AddReportViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\img\android phone.png" />
+    <Content Include="Content\img\bg.jpg" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\img\examples\home_1.png" />
+    <Content Include="Content\img\examples\home_2.png" />
+    <Content Include="Content\img\examples\home_3.png" />
+    <Content Include="Content\img\faces\face-2.jpg" />
+    <Content Include="Content\img\faces\face-3.jpg" />
+    <Content Include="Content\img\faces\face-4.jpg" />
+    <Content Include="Content\img\landing-page-1\adobe.png" />
+    <Content Include="Content\img\landing-page-1\airbnb.png" />
+    <Content Include="Content\img\landing-page-1\bg.jpg" />
+    <Content Include="Content\img\landing-page-1\bg1.jpg" />
+    <Content Include="Content\img\landing-page-1\ebay.png" />
+    <Content Include="Content\img\landing-page-1\evernote.png" />
+    <Content Include="Content\img\landing-page-1\iphone.png" />
+    <Content Include="Content\img\landing-page-1\mac2.jpg" />
+    <Content Include="Content\img\landing-page-1\zappos.png" />
+    <Content Include="Content\img\preview.png" />
+    <Content Include="Content\landing-page.css" />
     <Content Include="Content\themes\smoothness\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\smoothness\images\ui-bg_flat_75_ffffff_40x100.png" />
     <Content Include="Content\themes\smoothness\images\ui-bg_glass_55_fbf9ee_1x400.png" />
@@ -282,6 +301,7 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\SmoothScroll.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">

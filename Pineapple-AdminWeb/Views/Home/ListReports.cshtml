@@ -1,133 +1,131 @@
 ﻿@model IEnumerable<Pineapple_AdminWeb.Models.Noticia>
+   
+<div class="space">
+    <p>
+        @Html.ActionLink("Crear nuevo", "AddReport")
+    </p>
 
-<p>
-    @Html.ActionLink("Crear nuevo", "AddReport")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            Nombre
-        </th>
-        <th>
-            Descripcion
-        </th>
-        <th>
-            Imagen
-        </th>
-        <th>
-            Fecha de desaparición
-        </th>
-        <th>
-            Categoría
-        </th>
-        <th>
-            Provincia
-        </th>
-        <th>
-            Estado
-        </th>
-        <th>
-            Comentarios
-        </th>
-        <th></th>
-    </tr>
+    
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Description)
-        </td>
-        <td>
-            <img src="@item.PictureURL" style="max-width:150px;max-height:150px;"/>
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DateLost)
-        </td>
-        <td>
-            @{
-                switch (item.IdCategory)
-                {
-                    case "1":
-                        <p>Personas</p>
-                        break;
+    <div class="row">
+       
+        @foreach (var item in Model)
+        {
+            
 
-                    case "2":
-                        <p>Vehículos</p>
-                        break;
+            <div class="col-sm-6 col-md-6">
+                <div class="thumbnail">
+                    <h4 class="centro">@Html.DisplayFor(modelItem => item.Name)</h4>
 
-                    case "3":
-                        <p>Mascotas</p>
-                        break;
+                    <img src="@item.PictureURL" class="img-preview" />
+                    <div class="caption">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <h2><i class="fa fa-map-marker "></i></h2>
+                                <h5>
+                                    @{
+                                        switch (item.IdZone)
+                                        {
+                                            case "1":
+                                                <label>San José</label>
+                                                break;
 
-                    case "4":
-                        <p>Otros</p>
-                        break;
+                                            case "2":
+                                                <label>Alajuela</label>
 
-                    default:
-                        break;
-                }
-            }
-        </td>
-        <td>
-            @{
-                switch (item.IdZone)
-                {
-                    case "1":
-                        <p>San José</p>
-                        break;
+                                                break;
 
-                    case "2":
-                        <p>Alajuela</p>
-                        break;
+                                            case "3":
+                                                <label>Cartago</label>
 
-                    case "3":
-                        <p>Cartago</p>
-                        break;
+                                                break;
 
-                    case "4":
-                        <p>Heredia</p>
-                        break;
+                                            case "4":
+                                                <label>Heredia</label>
 
-                    case "5":
-                        <p>Guanacaste</p>
-                        break;
+                                                break;
 
-                    case "6":
-                        <p>Puntarenas</p>
-                        break;
+                                            case "5":
+                                                <label>Guanacaste</label>
 
-                    case "7":
-                        <p>Limón</p>
-                        break;
+                                                break;
 
-                    default:
-                        break;
-                }
-            }
-        </td>
-        <td>
-            @{
-                if (!item.Solved)
-                {
-                    <p>Pendiente</p>
-                }
-                else
-                {
-                    <p>Resuelto</p>
-                }
-            }
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.QuantityReports)
-        </td>
-        <td>
-            @Html.ActionLink("Editar", "EditReport", new { id=item.Id }) |
-            @Html.ActionLink("Detalle", "DetailsReport", new { id = item.Id })
-        </td>
-    </tr>
-}
+                                            case "6":
+                                                <label>Puntarenas</label>
 
-</table>
+                                                break;
+
+                                            case "7":
+                                                <label>Limón</label>
+
+                                                break;
+
+                                            default:
+                                                break;
+                                        }
+                                    }
+                                </h5>
+                            </div>
+                            <div class="col-md-3">
+                                <h2>
+                                    <i class="fa fa-calendar"></i>
+                                </h2>
+                                <h5>
+                                    @item.DateShort
+                                </h5>
+                            </div>
+                            <div class="col-md-3">
+                                
+                            @{
+                                if (item.Solved)
+                                {
+                                    <h2><i class="fa fa-check"></i></h2>
+                                    <h5>Resuelto</h5>
+                                }
+                                else
+                                {
+                                    <h2><i class="fa fa-question"></i></h2>
+                                    <h5>Pendiente</h5>
+                                }
+                           }
+    
+                            </div>
+                            <div class="col-md-3">
+                                <h2>
+                                    <i class="fa fa-comments-o"></i>
+                                </h2>
+                               
+                                <h5>
+                                    50
+                                </h5>
+                            </div>
+                        </div>
+                        <br />
+                       
+                        <p>
+                            <span class = "btn btn-primary" role = "button">
+                                @Html.ActionLink("Más información", "DetailsReport", new { id = item.Id })
+                            </span>
+                            <span class="btn btn-primary" role="button">
+                                @Html.ActionLink("Modificar", "EditReport", new { id = item.Id })
+                            </span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+
+
+        }
+    </div>
+
+   
+</div>
+
+<script>
+    $(function () {
+
+        $("#nav").removeClass("navbar-transparent");
+        $("#nav").addClass("navbar-inverse navbar-fixed-top");
+    });
+</script>
