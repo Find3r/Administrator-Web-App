@@ -1,4 +1,4 @@
-﻿@model Pineapple_AdminWeb.Models.Noticia
+﻿@model Pineapple_AdminWeb.ViewModel.DetailsReportViewModel
 
 @{
     ViewBag.Title = "DetailsReport";
@@ -9,136 +9,143 @@
     <div>
         <h4>Detalle Noticia</h4>
         <hr />
-        <dl class="dl-horizontal">
-            <dt>
-                @Html.DisplayNameFor(model => model.Name)
-            </dt>
+        <div class="row">
 
-            <dd>
-                @Html.DisplayFor(model => model.Name)
-            </dd>
+            <div class="col-sm-12 col-md-12">
+                <div class="thumbnail">
+                    <h4 class="centro">@Html.DisplayFor(modelItem => Model.Noticia.Name)</h4>
 
-            <dt>
-                @Html.DisplayNameFor(model => model.Description)
-            </dt>
+                    <img src="@Model.Noticia.PictureURL" class="img-preview" />
+                    <div class="caption">
 
-            <dd>
-                @Html.DisplayFor(model => model.Description)
-            </dd>
+                        <h5>Descripción</h5>
+                        <p class="text-justify">@Model.Noticia.Description</p>
 
-            <dt>
-                @Html.DisplayNameFor(model => model.PictureURL)
-            </dt>
+                        <div class="row">
+                            <div class="col-md-3">
+                                <h2><i class="fa fa-map-marker "></i></h2>
+                                <h5>
+                                    @{
+                                        switch (Model.Noticia.IdZone)
+                                        {
+                                            case "1":
+                                                <label>San José</label>
+                                                break;
 
-            <dd>
-                <img src="@Model.PictureURL" style="max-width:250px;max-height:250px;" />
-            </dd>
+                                            case "2":
+                                                <label>Alajuela</label>
 
-            <dt>
-                @Html.DisplayNameFor(model => model.DateShort)
-            </dt>
+                                                break;
 
-            <dd>
-                @Html.DisplayFor(model => model.DateShort)
-            </dd>
+                                            case "3":
+                                                <label>Cartago</label>
 
-            <dt>
-                @Html.DisplayNameFor(model => model.IdCategory)
-            </dt>
+                                                break;
 
-            <dd>
-                @{
-                    switch (Model.IdCategory)
-                    {
-                        case "1":
-                            <p>Personas</p>
-                            break;
+                                            case "4":
+                                                <label>Heredia</label>
 
-                        case "2":
-                            <p>Vehículos</p>
-                            break;
+                                                break;
 
-                        case "3":
-                            <p>Mascotas</p>
-                            break;
+                                            case "5":
+                                                <label>Guanacaste</label>
 
-                        case "4":
-                            <p>Otros</p>
-                            break;
+                                                break;
 
-                        default:
-                            break;
-                    }
+                                            case "6":
+                                                <label>Puntarenas</label>
+
+                                                break;
+
+                                            case "7":
+                                                <label>Limón</label>
+
+                                                break;
+
+                                            default:
+                                                break;
+                                        }
+                                    }
+                                </h5>
+                            </div>
+                            <div class="col-md-3">
+                                <h2>
+                                    <i class="fa fa-calendar"></i>
+                                </h2>
+                                <h5>
+                                    @Model.Noticia.DateShort
+                                </h5>
+                            </div>
+                            <div class="col-md-3">
+
+                                @{
+                                    if (Model.Noticia.Solved)
+                                    {
+                                        <h2><i class="fa fa-check"></i></h2>
+                                            <h5>Resuelto</h5>
+                                    }
+                                    else
+                                    {
+                                        <h2><i class="fa fa-question"></i></h2>
+                                            <h5>Pendiente</h5>
+                                    }
+                                }
+
+                            </div>
+                            <div class="col-md-3">
+                                <h2>
+                                    <i class="fa fa-comments-o"></i>
+                                </h2>
+
+                                <h5>
+                                    @Model.Noticia.CantidadComentarios
+                                </h5>
+                            </div>
+                        </div>
+                        <br />
+                    </div>
+                </div>
+            </div>   
+            
+           
+
+                   
+        </div>
+    </div>
+    <!-- fin noticia -->
+    <!-- Inicio comentarios -->      
+    <div>
+        <h4>Comentarios</h4>
+        <hr />
+        <div class="thumbnail">
+
+            @{
+                if (Model.Comentarios.Count() == 0)
+                {
+                    <p> Aún no hay comentarios</p>
                 }
-            </dd>
+                else
+                {
 
-            <dt>
-                @Html.DisplayNameFor(model => model.IdZone)
-            </dt>
+                    <div class="row">
+                        @{
+                            foreach (var item in Model.Comentarios)
+                            {
+                                <div class="col-sm-12 col-md-12">
+                                    
+                                    <img class="right user-picture img-circle" src="@item.UserPictureURL" />
+                                    <h6 class="text-left">@item.UserName</h6>
+                                    <p class="text-left">@item.Description</p>
+                                    <br />
+                                </div>
+                            }
+                        }
+                    </div>
 
-            <dd>
-                @{
-                    switch (Model.IdZone)
-                    {
-                        case "1":
-                            <p>San José</p>
-                            break;
-
-                        case "2":
-                            <p>Alajuela</p>
-                            break;
-
-                        case "3":
-                            <p>Cartago</p>
-                            break;
-
-                        case "4":
-                            <p>Heredia</p>
-                            break;
-
-                        case "5":
-                            <p>Guanacaste</p>
-                            break;
-
-                        case "6":
-                            <p>Puntarenas</p>
-                            break;
-
-                        case "7":
-                            <p>Limón</p>
-                            break;
-
-                        default:
-                            break;
-                    }
                 }
-            </dd>
-            <dt>
-                @Html.DisplayNameFor(model => model.Solved)
-            </dt>
+            }
 
-            <dd>
-                @{
-                    if (Model.IdStatus.Equals("0"))
-                    {
-                        <p>Pendiente</p>
-                    }
-                    else
-                    {
-                        <p>Resuelto</p>
-                    }
-                }
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.QuantityReports)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.QuantityReports)
-            </dd>
-
-        </dl>
+        </div>
     </div>
     <p>
 

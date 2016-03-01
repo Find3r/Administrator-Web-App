@@ -5,6 +5,7 @@ using Pineapple_AdminWeb.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
@@ -106,13 +107,18 @@ namespace Pineapple_AdminWeb.Controllers
             return View(new AddReportViewModel());
         }
 
-        public ActionResult DetailsReport(string id)
+        public async Task<ActionResult> DetailsReport(string id)
         {
-            // se busca la noticia en la colección
-            Noticia noticia = noticias.Where(e => e.Id.Equals(id)).FirstOrDefault();
+            DetailsReportViewModel viewModel = new DetailsReportViewModel();
 
-            // se pasa la noticia
-            return View(noticia);
+            // se busca la noticia en la colección
+            viewModel.Noticia = noticias.Where(e => e.Id.Equals(id)).FirstOrDefault();
+
+            // se buscan los comentarios
+            viewModel.Comentarios = await MobileService.InvokeApiAsync<IEnumerable<Comentario>>("postcomments", HttpMethod.Get, new Dictionary<string, string> { { "id", viewModel.Noticia.Id } });
+
+            // se pasa el viewModel
+            return View(viewModel);
         }
 
         [Authorize]

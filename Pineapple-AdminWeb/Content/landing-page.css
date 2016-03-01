@@ -1462,3 +1462,15 @@ ul.banner-social-buttons li {
     max-height:150px;
    
 }
+
+.right
+{
+    float:left;
+}
+
+.user-picture 
+{
+    
+    width:100px;
+    height:100px;
+}
